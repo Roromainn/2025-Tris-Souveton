@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using LogicLayer;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,22 @@ namespace HMI
     /// </summary>
     public partial class MainWindow : Window
     {
+        ArrayGenerator generator = new ArrayGenerator();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void GenerateRandomValues(object sender, RoutedEventArgs e)
+        {
+            int[] tab = generator.GenerateRandomArray(100, 0, 500);
+
+            ListValues.Items.Clear();
+            foreach (int value in tab)
+            {
+                ListValues.Items.Add(value);
+            }
         }
     }
 }
