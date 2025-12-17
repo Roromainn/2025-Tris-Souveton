@@ -6,8 +6,12 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
             <Button x:Name="BtnGenerate" 
                     Content="Générer un tableau aléatoire" 
-                    Padding="10,5" 
+                    Padding="10"
+                    Margin="10"
+                    Height="40"
                     Click="GenerateRandomValues"/>
+            <Button Content="Trier" Height="40" Width="63" Margin="10" Padding="10"
+                    Click="DoSort"/>
         </StackPanel>
 
         <Grid>

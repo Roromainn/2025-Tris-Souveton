@@ -17,13 +17,15 @@ namespace HMI
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region--Attributs--
+        int[] tab;
+        #endregion
         #region--Constructeur--
         public MainWindow()
         {
             InitializeComponent();
         }
         #endregion
-
 
         #region--Méthodes--
         /// <summary>
@@ -34,8 +36,7 @@ namespace HMI
             ArrayGenerator generator = new ArrayGenerator();
             ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
 
-
-            int[] tab = generator.GenerateRandomArray((int)MainCanvas.ActualHeight, 0 , 500);
+            tab = generator.GenerateRandomArray((int)MainCanvas.ActualHeight, 0, 500);
 
             ListValues.Items.Clear();
             foreach (int value in tab)
@@ -45,6 +46,25 @@ namespace HMI
 
             painter.InitArray(tab);
 
+        }
+
+        /// <summary>
+        /// Trie le tableau de valeur
+        /// </summary>
+        private void DoSort(object sender, RoutedEventArgs e)
+        {
+            if (tab == null)
+            {
+                MessageBox.Show("tableau non généré");
+                return;
+            }
+
+            NoSort tri = new NoSort();
+            tri.Sort(tab); 
+
+            //Actualise l'affichage
+            ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
+            painter.InitArray(tab);
         }
         #endregion
     }
