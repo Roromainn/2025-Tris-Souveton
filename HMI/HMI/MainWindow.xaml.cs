@@ -17,22 +17,35 @@ namespace HMI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ArrayGenerator generator = new ArrayGenerator();
-
+        #region--Constructeur--
         public MainWindow()
         {
             InitializeComponent();
         }
+        #endregion
 
+
+        #region--Méthodes--
+        /// <summary>
+        /// Affiche un tableau avec des valeurs aléatoires
+        /// </summary>
         private void GenerateRandomValues(object sender, RoutedEventArgs e)
         {
-            int[] tab = generator.GenerateRandomArray(100, 0, 500);
+            ArrayGenerator generator = new ArrayGenerator();
+            ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
+
+
+            int[] tab = generator.GenerateRandomArray((int)MainCanvas.ActualHeight, 0 , 500);
 
             ListValues.Items.Clear();
             foreach (int value in tab)
             {
                 ListValues.Items.Add(value);
             }
+
+            painter.InitArray(tab);
+
         }
+        #endregion
     }
 }
