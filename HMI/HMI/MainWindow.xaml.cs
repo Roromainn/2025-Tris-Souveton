@@ -24,6 +24,10 @@ namespace HMI
         public MainWindow()
         {
             InitializeComponent();
+            choix.Items.Add(new NoSort());
+            choix.Items.Add(new BubbleSort());
+            choix.DisplayMemberPath = "Name";
+
         }
         #endregion
 
@@ -59,13 +63,23 @@ namespace HMI
                 return;
             }
 
-            NoSort tri = new NoSort();
-            tri.Sort(tab); 
+
+            Sorter sort = ChooseSorter();
+            sort.Sort(tab);
+
 
             //Actualise l'affichage
             ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
             painter.InitArray(tab);
         }
+
+        private Sorter ChooseSorter()
+        {
+            Sorter tri = (Sorter)choix.SelectedItem;
+            return tri;
+        }
+
         #endregion
+
     }
 }

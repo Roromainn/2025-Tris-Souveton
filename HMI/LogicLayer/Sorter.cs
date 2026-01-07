@@ -9,7 +9,7 @@ namespace LogicLayer
     /// <summary>
     /// Interface pour tier un tableau
     /// </summary>
-    internal interface Sorter
+    public interface Sorter
     {
         /// <summary>
         /// Tri un tableau

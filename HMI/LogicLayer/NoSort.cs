@@ -11,6 +11,7 @@ namespace LogicLayer
     /// </summary>
     public class NoSort : Sorter
     {
+        public string Name { get; } = "No Sort";
         #region--Méthodes--
         public void Sort(int[] values)
         {

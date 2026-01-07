@@ -12,6 +12,7 @@
                     Click="GenerateRandomValues"/>
             <Button Content="Trier" Height="40" Width="63" Margin="10" Padding="10"
                     Click="DoSort"/>
+            <ComboBox Width="100" Height="40" Name="choix"/>
         </StackPanel>
 
         <Grid>
