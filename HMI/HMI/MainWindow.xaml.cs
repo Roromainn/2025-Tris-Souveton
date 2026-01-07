@@ -18,17 +18,24 @@ namespace HMI
     public partial class MainWindow : Window
     {
         #region--Attributs--
+        /// <summary>
+        /// Tableau d'entier
+        /// </summary>
         int[] tab;
+        /// <summary>
+        /// Tri pour le tableau
+        /// </summary>
+        SorterStrategy strategy;
         #endregion
         #region--Constructeur--
-        public MainWindow()
+        public MainWindow(SorterStrategy sorters)
         {
             InitializeComponent();
-            choix.Items.Add(new NoSort());
-            choix.Items.Add(new BubbleSort());
-            choix.Items.Add(new InsertSort());
-            choix.Items.Add(new QuickSort());
-            choix.DisplayMemberPath = "Name";
+            strategy = sorters;
+            foreach (string item in sorters.Names.Keys)
+            {
+                choix.Items.Add(item);
+            }
 
         }
         #endregion
@@ -65,20 +72,22 @@ namespace HMI
                 return;
             }
 
-
             Sorter sort = ChooseSorter();
             sort.Sort(tab);
-
 
             //Actualise l'affichage
             ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
             painter.InitArray(tab);
         }
 
+        /// <summary>
+        /// Choisi le tri voulu par l'utilisateur dans la combobox
+        /// </summary>
+        /// <returns></returns>
         private Sorter ChooseSorter()
         {
-            Sorter tri = (Sorter)choix.SelectedItem;
-            return tri;
+            SorterStrategy strat = strategy;
+            return strat.ChooseSorter((string)choix.SelectedItem);
         }
 
         #endregion

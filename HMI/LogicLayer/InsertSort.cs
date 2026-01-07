@@ -9,7 +9,14 @@ namespace LogicLayer
 {
     public class InsertSort : Sorter
     {
+        #region Propriétés
+        /// <summary>
+        /// Nom pour l'affichage dans l'ihm
+        /// </summary>
         public string Name { get; } = "Tri par insertion";
+        #endregion
+
+        #region Méthodes
         public void Sort(int[] values)
         {
             for (int i = 1; i < values.Length; i++)
@@ -24,5 +31,6 @@ namespace LogicLayer
                 values[j + 1] = key;
             }
         }
+        #endregion
     }
 }

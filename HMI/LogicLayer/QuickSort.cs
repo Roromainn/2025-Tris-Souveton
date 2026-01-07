@@ -9,12 +9,25 @@ namespace LogicLayer
 {
     public class QuickSort : Sorter
     {
+        #region Propriétés
+        /// <summary>
+        /// Nom pour l'affichage dans l'ihm
+        /// </summary>
         public string Name { get; } = "Tri rapide";
+        #endregion
+
+        #region Methodes
         public void Sort(int[] values)
         {
             DoQuickSort(values, 0, values.Length - 1);
         }
 
+        /// <summary>
+        /// Execute le quick sort
+        /// </summary>
+        /// <param name="array">tableau a trier</param>
+        /// <param name="low">valeur basse</param>
+        /// <param name="high">valeur haute</param>
         private void DoQuickSort(int[] array, int low, int high)
         {
             if (low < high)
@@ -25,6 +38,14 @@ namespace LogicLayer
                 DoQuickSort(array, pi + 1, high);
             }
         }
+
+        /// <summary>
+        /// Repartit les valeurs autour d'une valeur pivot
+        /// </summary>
+        /// <param name="array">tableau ou on veut le pivot</param>
+        /// <param name="low">valeur basse</param>
+        /// <param name="high">valeur haute</param>
+        /// <returns>L'indice du pivot</returns>
         private int Partition(int[] array, int low, int high)
         {
             int pivot = array[high];
@@ -44,6 +65,7 @@ namespace LogicLayer
             array[high] = temp1;
             return i + 1;
          }
+        #endregion
     }
 }
 

@@ -9,8 +9,14 @@ namespace LogicLayer
 {
     public class BubbleSort : Sorter
     {
+        #region Propriétés
+        /// <summary>
+        /// Nom pour l'affichage dans l'ihm
+        /// </summary>
         public string Name { get; } = "Tri a bulle";
+        #endregion
 
+        #region Méthodes 
         public void Sort(int[] values)
         {
             int n = values.Length;
@@ -30,6 +36,8 @@ namespace LogicLayer
                     }
                 }
             }
-            while (swapped);      }
+            while (swapped);      
+        }
+        #endregion
     }
 }
