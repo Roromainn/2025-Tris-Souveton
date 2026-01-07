@@ -27,6 +27,7 @@ namespace HMI
             choix.Items.Add(new NoSort());
             choix.Items.Add(new BubbleSort());
             choix.Items.Add(new InsertSort());
+            choix.Items.Add(new QuickSort());
             choix.DisplayMemberPath = "Name";
 
         }
