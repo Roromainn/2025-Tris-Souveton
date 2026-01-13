@@ -74,13 +74,18 @@ namespace HMI
 
             Sorter sort = ChooseSorter();
             
-            // Enregistre l'observateur avant de lancer le tri
             ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
             sort.RegisterObserver(painter);
             
-            await Task.Run(() => sort.Sort(tab));
+            int operationCount = await Task.Run(() => sort.Sort(tab));
 
             painter.InitArray(tab);
+            
+            // Affiche le nombre d'opérations 
+            MessageBox.Show($"Tri terminé\n\nTri effectué en {operationCount} opérations pour {tab.Length} éléments.", 
+                           "Résultat du tri", 
+                           MessageBoxButton.OK, 
+                           MessageBoxImage.Information);
         }
 
         /// <summary>

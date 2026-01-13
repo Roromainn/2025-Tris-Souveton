@@ -45,7 +45,8 @@ namespace LogicLayer
         /// Tri un tableau
         /// </summary>
         /// <param name="values">tableau d'entier a trier</param>
-        public abstract void Sort(int[] values);
+        /// <returns>Nombre d'opérations effectuées</returns>
+        public abstract int Sort(int[] values);
         #endregion
     }
 }

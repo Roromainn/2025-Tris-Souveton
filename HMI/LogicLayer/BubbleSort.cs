@@ -17,15 +17,18 @@ namespace LogicLayer
         #endregion
 
         #region Méthodes 
-        public override void Sort(int[] values)
+        public override int Sort(int[] values)
         {
             int n = values.Length;
             bool swapped = false;
+            int operationCount = 0;
+            
             do
             {
                 swapped = false;
                 for (int i = 0; i < n - 1; i++)
                 {
+                    operationCount++; // Compte chaque comparaison
                     if (values[i] > values[i + 1])
                     {
                         // swap
@@ -40,7 +43,9 @@ namespace LogicLayer
                     }
                 }
             }
-            while (swapped);      
+            while (swapped);
+            
+            return operationCount;
         }
         #endregion
     }

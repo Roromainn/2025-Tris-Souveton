@@ -16,10 +16,19 @@ namespace LogicLayer
         public string Name { get; } = "Tri rapide";
         #endregion
 
+        #region Attributs
+        /// <summary>
+        /// Compteur d'opérations
+        /// </summary>
+        private int operationCount = 0;
+        #endregion
+
         #region Methodes
-        public override void Sort(int[] values)
+        public override int Sort(int[] values)
         {
+            operationCount = 0;
             DoQuickSort(values, 0, values.Length - 1);
+            return operationCount;
         }
 
         /// <summary>
@@ -52,6 +61,7 @@ namespace LogicLayer
             int i = (low - 1);
             for (int j = low; j < high; j++)
             {
+                operationCount++; 
                 if (array[j] < pivot)
                 {
                     i++;
