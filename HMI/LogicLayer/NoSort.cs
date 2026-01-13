@@ -19,7 +19,7 @@ namespace LogicLayer
         #endregion
 
         #region--Méthodes--
-        public void Sort(int[] values)
+        public override void Sort(int[] values)
         {
         }
         #endregion

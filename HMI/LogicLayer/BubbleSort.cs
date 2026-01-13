@@ -17,7 +17,7 @@ namespace LogicLayer
         #endregion
 
         #region Méthodes 
-        public void Sort(int[] values)
+        public override void Sort(int[] values)
         {
             int n = values.Length;
             bool swapped = false;
@@ -32,6 +32,10 @@ namespace LogicLayer
                         int temp = values[i];
                         values[i] = values[i + 1];
                         values[i + 1] = temp;
+                        
+                        NotifyChange(i, values[i]);
+                        NotifyChange(i + 1, values[i + 1]);
+                        
                         swapped = true;
                     }
                 }

@@ -64,7 +64,7 @@ namespace HMI
         /// <summary>
         /// Trie le tableau de valeur
         /// </summary>
-        private void DoSort(object sender, RoutedEventArgs e)
+        private async void DoSort(object sender, RoutedEventArgs e)
         {
             if (tab == null)
             {
@@ -73,10 +73,13 @@ namespace HMI
             }
 
             Sorter sort = ChooseSorter();
-            sort.Sort(tab);
-
-            //Actualise l'affichage
+            
+            // Enregistre l'observateur avant de lancer le tri
             ArrayPainter painter = new ArrayPainter(this.MainCanvas, Brushes.Blue);
+            sort.RegisterObserver(painter);
+            
+            await Task.Run(() => sort.Sort(tab));
+
             painter.InitArray(tab);
         }
 

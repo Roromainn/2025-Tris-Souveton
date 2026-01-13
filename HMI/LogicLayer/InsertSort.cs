@@ -17,7 +17,7 @@ namespace LogicLayer
         #endregion
 
         #region Méthodes
-        public void Sort(int[] values)
+        public override void Sort(int[] values)
         {
             for (int i = 1; i < values.Length; i++)
             {
@@ -26,9 +26,11 @@ namespace LogicLayer
                 while (j >= 0 && values[j] > key)
                 {
                     values[j + 1] = values[j];
+                    NotifyChange(j + 1, values[j + 1]); 
                     j--;
                 }
                 values[j + 1] = key;
+                NotifyChange(j + 1, values[j + 1]); 
             }
         }
         #endregion

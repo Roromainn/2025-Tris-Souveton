@@ -17,7 +17,7 @@ namespace LogicLayer
         #endregion
 
         #region Methodes
-        public void Sort(int[] values)
+        public override void Sort(int[] values)
         {
             DoQuickSort(values, 0, values.Length - 1);
         }
@@ -58,11 +58,18 @@ namespace LogicLayer
                     int temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
+                    
+                    NotifyChange(i, array[i]);
+                    NotifyChange(j, array[j]);
                 }
             }
             int temp1 = array[i + 1];
             array[i + 1] = array[high];
             array[high] = temp1;
+            
+            NotifyChange(i + 1, array[i + 1]);
+            NotifyChange(high, array[high]);
+            
             return i + 1;
          }
         #endregion

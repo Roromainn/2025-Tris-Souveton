@@ -7,12 +7,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+using LogicLayer;
+
 namespace HMI
 {
     /// <summary>
     /// Classe qui gère l'affichage du tableau 
     /// </summary>
-    internal class ArrayPainter
+    internal class ArrayPainter : SorterObserver
     {
         #region--Atributs--
         /// <summary>
@@ -74,6 +76,30 @@ namespace HMI
 
                 canvas.Children.Add(line);
             }
+        }
+
+        /// <summary>
+        /// Méthode appelée lorsqu'une valeur du tableau change pendant le tri
+        /// </summary>
+        /// <param name="i">Index de la ligne à modifier</param>
+        /// <param name="newValue">Nouvelle valeur</param>
+        public void ChangeValue(int i, int newValue)
+        {
+            canvas.Dispatcher.Invoke(() =>
+            {
+                // Récupère la ligne correspondante
+                if (i < canvas.Children.Count)
+                {
+                    Line line = (Line)canvas.Children[i];
+                    
+                    // Calcule la nouvelle taille
+                    int maxValue = 500; 
+                    double taille = canvas.ActualWidth / maxValue;
+                    
+                    // Met à jour la ligne
+                    line.X2 = newValue * taille;
+                }
+            });
         }
         #endregion
     }
